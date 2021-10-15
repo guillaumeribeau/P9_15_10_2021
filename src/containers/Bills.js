@@ -37,7 +37,9 @@ export default class {
       .get()
       .then(snapshot => {
         const bills = snapshot.docs
+        
           .map(doc => {
+            
             try {
               return {
                 ...doc.data(),

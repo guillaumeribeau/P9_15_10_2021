@@ -15,22 +15,38 @@ export default class NewBill {
     this.fileName = null
     new Logout({ document, localStorage, onNavigate })
   }
+  
   handleChangeFile = e => {
     const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
+    const inputFile = this.document.querySelector("Input[type='file']")
     const filePath = e.target.value.split(/\\/g)
     const fileName = filePath[filePath.length-1]
-    this.firestore
-      .storage
-      .ref(`justificatifs/${fileName}`)
-      .put(file)
-      .then(snapshot => snapshot.ref.getDownloadURL())
-      .then(url => {
-        this.fileUrl = url
-        this.fileName = fileName
-      })
+    const extension = fileName.substring(fileName.lastIndexOf(".") + 1)
+    console.log(extension)
+    if (["jpg", "jpeg", "png"].includes(extension)) {
+      inputFile.setCustomValidity("")
+      this.firestore
+        .storage
+        .ref(`justificatifs/${fileName}`)
+        .put(file)
+        .then(snapshot => snapshot.ref.getDownloadURL())
+        .then(url => {
+          this.fileUrl = url
+          this.fileName = fileName
+        })
+    } else {
+      inputFile.setCustomValidity("Format " + extension.toUpperCase() + " invalide. Format valide : JPG, JPEG ou PNG.");
+      this.fileName = "invalid";
+    }
   }
+
+
   handleSubmit = e => {
     e.preventDefault()
+
+    if (this.fileName === "invalid") {
+      return false
+    }
     console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)
     const email = JSON.parse(localStorage.getItem("user")).email
     const bill = {
