@@ -1,50 +1,22 @@
-**Comment lancer l'application en local** :
+# Projet 9 "Débuggez et testez un SaaS RH."
 
-Clonez le projet :
-```
-$ git clone https://github.com/OpenClassrooms-Student-Center/Billed-app-FR.git
-```
+**CONTEXTE**
 
-Allez au repo cloné :
-```
-$ cd Billed-app-FR
-```
+_Fiabiliser et améliorer le parcours employé :_
 
-Installez les packages npm (décrits dans `package.json`) :
-```
-$ npm install
-```
+1. Fixer les bugs identifiés.
+2. Ajouter des tests unitaires et d'intégration.
+3. Rédiger un plan de test End-to-End pour le parcours employé
 
-Installez live-server pour lancer un serveur local :
-```
-$ npm install -g live-server
-```
+**LANCER L'APPLICATION EN LOCAL**
 
-Lancez l'application :
-```
-$ live-server
-```
+**Téléchargez le projet**
+Accédez au dossier
 
-Puis allez à l'adresse : `http://127.0.0.1:8080/`
+Installez les packages npm (décrits dans package.json) : npm install
+Installez live-server pour lancer un serveur local : npm install -g live-server
+Lancez l'application : live-server
 
-
-**Comment lancer tous les tests en local avec Jest :**
-
-```
-$ npm run test
-```
-
-**Comment lancer un seul test :**
-
-Installez jest-cli :
-
-```
-$npm i -g jest-cli
-$jest src/__tests__/your_test_file.js
-```
-
-**Comment voir la couverture de test :**
-
-`http://127.0.0.1:8080/coverage/lcov-report/`
-
-
+**LANCER TOUS LES TESTS EN LOCAL AVEC JEST**
+npm run test
+Voir la couverture de test: http://127.0.0.1:8080/coverage/lcov-report/
