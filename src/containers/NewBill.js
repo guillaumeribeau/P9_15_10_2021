@@ -24,6 +24,7 @@ export default class NewBill {
     const fileName = filePath[filePath.length - 1];
     const extension = fileName.substring(fileName.lastIndexOf(".") + 1);
     console.log(extension);
+
     if (["jpg", "jpeg", "png"].includes(extension)) {
       inputFile.setCustomValidity("");
       this.firestore.storage
@@ -43,6 +44,7 @@ export default class NewBill {
       this.fileName = "invalid";
     }
   };
+
   handleSubmit = (e) => {
     e.preventDefault();
 

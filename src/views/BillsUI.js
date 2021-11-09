@@ -43,7 +43,7 @@ export default ({ data: bills, loading, error }) => {
       </div>
     </div>
   `;
-
+  /*istanbul ignore next*/
   if (loading) {
     return LoadingPage();
   } else if (error) {

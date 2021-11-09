@@ -15,7 +15,9 @@ export const filteredBills = (data, status) => {
           selectCondition = bill.status === status;
         } else {
           // in prod environment
+
           const userEmail = JSON.parse(localStorage.getItem("user")).email;
+
           selectCondition =
             bill.status === status &&
             [...USERS_TEST, userEmail].includes(bill.email);
@@ -28,16 +30,21 @@ export const filteredBills = (data, status) => {
 
 export const card = (bill) => {
   const firstAndLastNames = bill.email.split("@")[0];
+
   const firstName = firstAndLastNames.includes(".")
     ? firstAndLastNames.split(".")[0]
     : "";
+
   const lastName = firstAndLastNames.includes(".")
     ? firstAndLastNames.split(".")[1]
     : firstAndLastNames;
 
   const regexFormatDate = /^(19|20)([0-9]){2}\-(0|1)([0-9]){1}\-([0-3]){1}([0-9]){1}$/;
+
   if (regexFormatDate.test(bill.date) == false) bill.date = "2021-10-19";
+
   if (bill.name == "") bill.name = "DefaultName";
+
   if (/^([0-9]+)$/.test(bill.amount.toString()) == false) bill.amount = 500;
 
   return `
@@ -95,6 +102,7 @@ export default class {
       .html(
         `<div style='text-align: center;'><img width=${imgWidth} src=${billUrl} /></div>`
       );
+
     if (typeof $("#modaleFileAdmin1").modal === "function")
       $("#modaleFileAdmin1").modal("show");
   };
